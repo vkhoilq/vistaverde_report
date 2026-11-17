@@ -1,0 +1,1814 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Báo Cáo Tài Chính - Quỹ Quản Lý Vận Hành | Vista Verde (01/2026 - 10/2026)</title>
+  
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            verde: {
+              50: '#ecfdf5',
+              100: '#d1fae5',
+              200: '#a7f3d0',
+              500: '#10b981',
+              600: '#059669',
+              700: '#047857',
+              800: '#065f46',
+              900: '#064e3b',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Chart.js via CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
+  <style>
+    /* Custom scrollbar for clean financial table navigation */
+    .table-container::-webkit-scrollbar {
+      height: 10px;
+      width: 10px;
+    }
+    .table-container::-webkit-scrollbar-track {
+      background: #f1f5f9;
+      border-radius: 6px;
+    }
+    .table-container::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 6px;
+    }
+    .table-container::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+
+    /* Sticky positioning adjustments for multi-column freeze */
+    .sticky-col-1 {
+      position: sticky;
+      left: 0;
+      z-index: 20;
+    }
+    .sticky-col-2 {
+      position: sticky;
+      left: 84px; /* Matches width of col 1 */
+      z-index: 20;
+    }
+    thead .sticky-col-1,
+    thead .sticky-col-2 {
+      z-index: 30;
+    }
+    /* Subtle shadow on the right edge of sticky columns */
+    .sticky-col-2::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: -6px;
+      bottom: 0;
+      width: 6px;
+      pointer-events: none;
+      background: linear-gradient(to right, rgba(15, 23, 42, 0.06), rgba(15, 23, 42, 0));
+    }
+
+    /* Tabular numbers for financial alignment */
+    .tabular-nums {
+      font-variant-numeric: tabular-nums;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-emerald-100 selection:text-emerald-900">
+
+  <!-- Top Navigation / Brand Header -->
+  <header class="bg-gradient-to-r from-emerald-900 via-emerald-800 to-teal-900 text-white shadow-lg border-b border-emerald-700/50">
+    <div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+        
+        <!-- Left Brand & Title -->
+        <div class="flex flex-col sm:flex-row sm:items-center gap-5">
+          <!-- Vista Verde Emblem -->
+          <div class="flex-shrink-0 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl px-4 py-3 text-center shadow-inner w-fit">
+            <div class="text-lg font-extrabold tracking-[0.22em] leading-none text-emerald-200">VISTA</div>
+            <div class="text-lg font-extrabold tracking-[0.22em] leading-tight text-white">VERDE</div>
+            <div class="text-[10px] italic text-emerald-200/90 tracking-wider mt-0.5">Symphony of nature</div>
+          </div>
+
+          <div>
+            <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-emerald-500/20 border border-emerald-400/30 text-emerald-200 text-xs font-medium mb-2">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              Báo Cáo Quản Lý Vận Hành Định Kỳ • Monthly Overview Report
+            </div>
+            <h1 class="text-xl sm:text-2xl lg:text-3xl font-bold tracking-tight text-white leading-snug">
+              BÁO CÁO TÀI CHÍNH - QUỸ QUẢN LÝ VẬN HÀNH
+            </h1>
+            <p class="text-sm sm:text-base font-medium text-emerald-200/90 mt-0.5">
+              FINANCIAL REPORT - MANAGEMENT FUND
+            </p>
+            <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs sm:text-sm text-emerald-100/80 mt-2.5">
+              <span class="flex items-center gap-1.5">
+                <svg class="w-4 h-4 text-emerald-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                Dự án: <strong class="text-white">Vista Verde</strong>
+              </span>
+              <span class="text-emerald-500">•</span>
+              <span class="flex items-center gap-1.5">
+                <svg class="w-4 h-4 text-emerald-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                Đơn vị quản lý: <strong class="text-white">Savills</strong>
+              </span>
+              <span class="text-emerald-500">•</span>
+              <span class="flex items-center gap-1.5">
+                <svg class="w-4 h-4 text-emerald-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                Giai đoạn: <strong class="text-white">01/01/2026 - 31/10/2026</strong>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Savills Badge & Export Controls -->
+        <div class="flex flex-wrap items-center gap-3 self-start lg:self-center">
+          <div class="bg-amber-400 text-slate-900 font-extrabold px-3.5 py-2 rounded-xl text-sm tracking-tight shadow-sm">
+            savills
+          </div>
+          <button id="exportCsvBtn" type="button" class="inline-flex items-center gap-2 bg-white text-emerald-900 hover:bg-emerald-50 active:scale-[0.99] font-semibold text-sm px-4 py-2.5 rounded-xl shadow-md transition cursor-pointer">
+            <svg class="w-4 h-4 text-emerald-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+            </svg>
+            Export CSV / Excel
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-6 sm:space-y-8">
+
+    <!-- Toast Notification Banner (Hidden by default) -->
+    <div id="toastBanner" class="hidden fixed bottom-5 right-5 z-50 flex items-center gap-3 bg-slate-900 text-white px-4 py-3 rounded-xl shadow-xl border border-slate-700 text-sm transition-all">
+      <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+      <span id="toastMessage">Đã xuất tệp báo cáo thành công!</span>
+    </div>
+
+    <!-- Section 1: KPI Summary Cards -->
+    <section aria-label="Key Financial Metrics" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-5">
+      
+      <!-- Card 1: Opening Balance -->
+      <div class="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm hover:shadow-md transition relative overflow-hidden">
+        <div class="flex items-start justify-between gap-3">
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Số dư đầu kỳ (01/2026)</p>
+            <p class="text-[11px] text-slate-400 mt-0.5">Opening Balance (B)</p>
+          </div>
+          <div class="p-2.5 rounded-xl bg-slate-100 text-slate-600">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg>
+          </div>
+        </div>
+        <div class="mt-4">
+          <div class="text-xl sm:text-2xl font-extrabold text-slate-900 tabular-nums tracking-tight">
+            2,558,760,528 <span class="text-xs font-semibold text-slate-500">VND</span>
+          </div>
+          <p class="text-xs text-slate-500 mt-1.5 flex items-center gap-1">
+            <span class="inline-block w-1.5 h-1.5 rounded-full bg-slate-400"></span>
+            Tiền mặt & Tiền gửi ngân hàng 01/01/2026
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 2: Total Collection -->
+      <div class="bg-white rounded-2xl p-5 border border-emerald-200/80 shadow-sm hover:shadow-md transition relative overflow-hidden">
+        <div class="flex items-start justify-between gap-3">
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-wider text-emerald-700">Tổng thu 10 tháng (A.I)</p>
+            <p class="text-[11px] text-slate-400 mt-0.5">Total Collection (01/2026 - 10/2026)</p>
+          </div>
+          <div class="p-2.5 rounded-xl bg-emerald-50 text-emerald-600">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+          </div>
+        </div>
+        <div class="mt-4">
+          <div class="text-xl sm:text-2xl font-extrabold text-emerald-700 tabular-nums tracking-tight">
+            37,202,851,031 <span class="text-xs font-semibold text-emerald-600/80">VND</span>
+          </div>
+          <p class="text-xs text-slate-500 mt-1.5 flex items-center gap-1">
+            <span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+            Trung bình ~3.72 tỷ VND/tháng
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 3: Total Paid -->
+      <div class="bg-white rounded-2xl p-5 border border-amber-200/80 shadow-sm hover:shadow-md transition relative overflow-hidden">
+        <div class="flex items-start justify-between gap-3">
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-wider text-amber-700">Tổng chi 10 tháng (A.II)</p>
+            <p class="text-[11px] text-slate-400 mt-0.5">Total Paid Amount (01/2026 - 10/2026)</p>
+          </div>
+          <div class="p-2.5 rounded-xl bg-amber-50 text-amber-600">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6"/></svg>
+          </div>
+        </div>
+        <div class="mt-4">
+          <div class="text-xl sm:text-2xl font-extrabold text-amber-700 tabular-nums tracking-tight">
+            34,925,825,321 <span class="text-xs font-semibold text-amber-600/80">VND</span>
+          </div>
+          <p class="text-xs text-slate-500 mt-1.5 flex items-center gap-1">
+            <span class="inline-block w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+            Chênh lệch Thu - Chi (A): <strong class="text-emerald-700">+3,277,025,709</strong>
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 4: Closing Balance -->
+      <div class="bg-gradient-to-br from-emerald-800 to-teal-900 rounded-2xl p-5 text-white shadow-md hover:shadow-lg transition relative overflow-hidden">
+        <div class="flex items-start justify-between gap-3">
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-wider text-emerald-200">Số dư cuối kỳ (10/2026)</p>
+            <p class="text-[11px] text-emerald-200/75 mt-0.5">Closing Balance (C) = (A) + (B)</p>
+          </div>
+          <div class="p-2.5 rounded-xl bg-white/15 text-emerald-200">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+        </div>
+        <div class="mt-4">
+          <div class="text-xl sm:text-2xl font-extrabold text-white tabular-nums tracking-tight">
+            5,835,786,238 <span class="text-xs font-semibold text-emerald-200">VND</span>
+          </div>
+          <p class="text-xs text-emerald-100/90 mt-1.5 flex items-center gap-1.5">
+            <span class="px-1.5 py-0.5 rounded bg-emerald-400/20 text-emerald-200 font-semibold">+128.1%</span>
+            so với số dư đầu năm 01/2026
+          </p>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Section 2: Interactive Charts -->
+    <section aria-label="Financial Charts" class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      
+      <!-- Chart 1: Monthly Cash Flow & Closing Balance -->
+      <div class="lg:col-span-8 bg-white rounded-2xl p-5 sm:p-6 border border-slate-200/80 shadow-sm flex flex-col">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+          <div>
+            <h2 class="text-base sm:text-lg font-bold text-slate-900">Biến Động Thu - Chi & Số Dư Cuối Kỳ Hàng Tháng</h2>
+            <p class="text-xs text-slate-500">Monthly Collection (A.I) vs. Expenditure (A.II) & Closing Balance (C) — 01/2026 to 10/2026</p>
+          </div>
+          <span class="inline-flex items-center px-2.5 py-1 rounded-lg bg-slate-100 text-slate-600 text-xs font-medium w-fit">
+            Đơn vị: VND
+          </span>
+        </div>
+        <div class="relative w-full h-[320px] sm:h-[360px]">
+          <canvas id="cashflowChart"></canvas>
+        </div>
+      </div>
+
+      <!-- Chart 2: Breakdown of Main Expenses -->
+      <div class="lg:col-span-4 bg-white rounded-2xl p-5 sm:p-6 border border-slate-200/80 shadow-sm flex flex-col">
+        <div class="mb-4">
+          <h2 class="text-base sm:text-lg font-bold text-slate-900">Cơ Cấu Các Khoản Đã Chi (A.II)</h2>
+          <p class="text-xs text-slate-500">10-Month Expenditure Breakdown by Category</p>
+        </div>
+        <div class="relative w-full h-[240px] flex items-center justify-center">
+          <canvas id="expenseBreakdownChart"></canvas>
+        </div>
+        <!-- Custom Legend Summary -->
+        <div id="expenseLegendList" class="mt-4 pt-3 border-t border-slate-100 space-y-2 text-xs">
+          <!-- Populated dynamically via JS -->
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Section 3: Interactive Financial Ledger Table -->
+    <section aria-label="Detailed Financial Table" class="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden">
+      
+      <!-- Table Controls Header -->
+      <div class="p-5 sm:p-6 border-b border-slate-200 bg-slate-50/70 space-y-4">
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+          <div>
+            <h2 class="text-base sm:text-lg font-bold text-slate-900">Bảng Chi Tiết Thu Chi Quỹ Quản Lý Vận Hành (10 Tháng)</h2>
+            <p class="text-xs text-slate-500 mt-0.5">
+              Hợp nhất đầy đủ dữ liệu từ Trang 1 & Trang 2 • Cuộn ngang để xem chi tiết từng tháng và cột Tổng 10 tháng
+            </p>
+          </div>
+
+          <!-- Search & Hide Empty Toggle -->
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+            <div class="relative">
+              <svg class="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+              </svg>
+              <input
+                id="searchInput"
+                type="text"
+                placeholder="Tìm theo STT hoặc nội dung (VN/EN)..."
+                class="w-full sm:w-72 pl-9 pr-8 py-2 text-sm bg-white border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition"
+              />
+              <button id="clearSearchBtn" type="button" class="hidden absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-0.5 cursor-pointer" title="Xóa tìm kiếm">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+              </button>
+            </div>
+
+            <label class="inline-flex items-center gap-2.5 px-3.5 py-2 bg-white border border-slate-300 rounded-xl text-xs sm:text-sm font-medium text-slate-700 cursor-pointer hover:bg-slate-50 select-none">
+              <input id="hideEmptyToggle" type="checkbox" class="w-4 h-4 rounded text-emerald-600 focus:ring-emerald-500 border-slate-300 cursor-pointer">
+              <span>Ẩn dòng trống (0 VND)</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Category Filter Tabs -->
+        <div class="flex flex-wrap items-center justify-between gap-3 pt-1">
+          <div id="filterTabs" class="flex flex-wrap items-center gap-1.5">
+            <button data-filter="all" class="filter-tab active px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold bg-emerald-700 text-white shadow-sm transition cursor-pointer">
+              Tất cả (All)
+            </button>
+            <button data-filter="summary" class="filter-tab px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-medium bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 transition cursor-pointer">
+              Tổng hợp (A, B, C)
+            </button>
+            <button data-filter="collections" class="filter-tab px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-medium bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 transition cursor-pointer">
+              Khoản đã thu (A.I)
+            </button>
+            <button data-filter="expenses" class="filter-tab px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-medium bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 transition cursor-pointer">
+              Khoản đã chi (A.II)
+            </button>
+            <button data-filter="notes" class="filter-tab px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-medium bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 transition cursor-pointer">
+              Có ghi chú (Notes)
+            </button>
+          </div>
+
+          <div class="text-xs text-slate-500">
+            Hiển thị <span id="visibleRowCount" class="font-bold text-slate-800">0</span> / <span id="totalRowCount" class="font-semibold">0</span> hạng mục
+          </div>
+        </div>
+      </div>
+
+      <!-- Scrollable Table Wrapper -->
+      <div class="table-container overflow-x-auto max-h-[720px] relative">
+        <table class="w-full text-left border-collapse text-xs sm:text-[13px]">
+          <thead class="bg-slate-100 text-slate-700 uppercase text-[11px] font-bold tracking-wider sticky top-0 z-30 border-b-2 border-slate-300 shadow-sm">
+            <tr>
+              <th class="sticky-col-1 bg-slate-100 px-3 py-3.5 w-[84px] min-w-[84px] max-w-[84px] border-r border-slate-200">
+                STT / No.
+              </th>
+              <th class="sticky-col-2 bg-slate-100 px-3.5 py-3.5 min-w-[260px] sm:min-w-[340px] max-w-[360px] border-r border-slate-200">
+                Nội dung / Content
+              </th>
+              <th class="px-3 py-3.5 text-right min-w-[125px] whitespace-nowrap">01/2026</th>
+              <th class="px-3 py-3.5 text-right min-w-[125px] whitespace-nowrap">02/2026</th>
+              <th class="px-3 py-3.5 text-right min-w-[125px] whitespace-nowrap">03/2026</th>
+              <th class="px-3 py-3.5 text-right min-w-[125px] whitespace-nowrap">04/2026</th>
+              <th class="px-3 py-3.5 text-right min-w-[125px] whitespace-nowrap">05/2026</th>
+              <th class="px-3 py-3.5 text-right min-w-[125px] whitespace-nowrap">06/2026</th>
+              <th class="px-3 py-3.5 text-right min-w-[125px] whitespace-nowrap">07/2026</th>
+              <th class="px-3 py-3.5 text-right min-w-[125px] whitespace-nowrap">08/2026</th>
+              <th class="px-3 py-3.5 text-right min-w-[125px] whitespace-nowrap">09/2026</th>
+              <th class="px-3 py-3.5 text-right min-w-[125px] whitespace-nowrap">10/2026</th>
+              <th class="px-3.5 py-3.5 text-right min-w-[145px] whitespace-nowrap bg-emerald-50/90 text-emerald-900 border-l border-slate-200">
+                Tổng 10T / Total
+              </th>
+              <th class="px-3.5 py-3.5 min-w-[260px] border-l border-slate-200">
+                Ghi chú / Note
+              </th>
+            </tr>
+          </thead>
+          <tbody id="financialTableBody" class="divide-y divide-slate-200/80 bg-white">
+            <!-- Rows injected via JavaScript -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Empty Search State -->
+      <div id="emptyState" class="hidden py-14 px-4 text-center">
+        <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-slate-100 text-slate-400 mb-3">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <h3 class="text-sm font-semibold text-slate-800">Không tìm thấy hạng mục phù hợp</h3>
+        <p class="text-xs text-slate-500 mt-1">Vui lòng thử từ khóa khác hoặc đặt lại bộ lọc.</p>
+      </div>
+
+    </section>
+
+    <!-- Section 4: Official Report Notes & Signature Footer -->
+    <footer class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200/80 shadow-sm">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        <!-- Official Notes -->
+        <div class="lg:col-span-8 space-y-4">
+          <div class="flex items-center gap-2 border-b border-slate-200 pb-2.5">
+            <svg class="w-5 h-5 text-emerald-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <h3 class="text-sm sm:text-base font-bold uppercase tracking-wide text-slate-900">Ghi Chú / Notes</h3>
+          </div>
+
+          <ol class="space-y-3.5 text-xs sm:text-sm text-slate-700 leading-relaxed list-decimal pl-5">
+            <li>
+              <p class="font-medium text-slate-800">
+                Báo cáo tổng hợp thống kê sơ bộ số liệu thu chi quỹ vận hành được gửi đến Quý cư dân định kỳ hàng tháng. Báo cáo chính thức sẽ được gửi đến Quý cư dân sau khi được kiểm toán bởi đơn vị kiểm toán độc lập hàng năm.
+              </p>
+              <p class="italic text-slate-500 mt-1">
+                1. The overview financial report summarized key statistics of movement on management fund. It is sent to residents monthly. The official financial report will be sent to residents annually after audited by an independent audit company.
+              </p>
+            </li>
+            <li>
+              <p class="font-medium text-slate-800">
+                Quý cư dân cần tham khảo số liệu chi tiết liên quan đến báo cáo này, vui lòng liên hệ Văn phòng Ban quản lý.
+              </p>
+              <p class="italic text-slate-500 mt-1">
+                2. Kindly contact Management Board for any detailed data related to this report.
+              </p>
+            </li>
+          </ol>
+        </div>
+
+        <!-- Management Board Stamp & Signature Block -->
+        <div class="lg:col-span-4 flex flex-col items-center justify-center bg-slate-50 rounded-xl p-5 border border-slate-200/80 text-center">
+          <div class="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-900">
+            BAN QUẢN LÝ CHUNG CƯ VISTA VERDE
+          </div>
+          <div class="text-[11px] text-slate-500 mt-0.5">Vista Verde Management Office (Savills)</div>
+          
+          <!-- Official Red Stamp & Blue Signature Visual Seal -->
+          <div class="my-4 relative flex items-center justify-center">
+            <div class="w-28 h-28 rounded-full border-2 border-red-600/80 flex flex-col items-center justify-center p-2 text-red-600/85 select-none rotate-[-6deg] bg-red-50/30">
+              <span class="text-[8px] font-bold tracking-widest uppercase">BAN QUẢN LÝ</span>
+              <span class="text-[10px] font-extrabold tracking-wider uppercase mt-0.5">VISTA VERDE</span>
+              <span class="w-12 h-[1px] bg-red-500/50 my-1"></span>
+              <span class="text-[7px] font-semibold uppercase">SAVILLS VIETNAM</span>
+            </div>
+            <!-- Stylized Signature Overlay -->
+            <svg class="w-32 h-16 absolute text-blue-700/90 pointer-events-none" viewBox="0 0 180 80" fill="none">
+              <path d="M22 55 C35 20, 48 18, 45 50 C43 65, 62 32, 75 42 C85 50, 92 25, 108 38 C120 48, 132 30, 158 35" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+              <path d="M35 62 C70 56, 115 52, 152 54" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+            </svg>
+          </div>
+
+          <div class="text-sm font-bold text-slate-900 tracking-wide">
+            ĐẶNG THỊ THANH NGÂN
+          </div>
+          <div class="text-[11px] text-slate-500 mt-0.5">Trưởng Ban Quản Lý / Property Manager</div>
+        </div>
+
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- Data & Interactive Application Script -->
+  <script>
+    /**
+     * Complete merged financial dataset parsed from Page 1 and Page 2 of
+     * '5. Báo cáo chi tiết QVH.parse.json' (Vista Verde Management Fund, 01/2026 - 10/2026).
+     * Negative values are stored as negative numbers and rendered in parentheses (e.g., (594,610,991)).
+     * Empty cells are stored as null.
+     */
+    const MONTHS = [
+      '01/2026', '02/2026', '03/2026', '04/2026', '05/2026',
+      '06/2026', '07/2026', '08/2026', '09/2026', '10/2026'
+    ];
+
+    const FINANCIAL_ROWS = [
+      // (A) Net Difference
+      {
+        stt: '(A)',
+        content: 'CHÊNH LỆCH CÁC KHOẢN ĐÃ THU VÀ ĐÃ CHI',
+        values: [1285693295, 1006950114, -594610991, 343929387, -1825983311, 2176799576, 630107334, -89594108, -858329076, 1202063489],
+        note: '',
+        level: 'top-summary',
+        section: 'summary'
+      },
+
+      // A.I Total Collection
+      {
+        stt: 'A.I',
+        content: 'TỔNG CÁC KHOẢN ĐÃ THU/ TOTAL OF COLLECTION',
+        values: [7024858611, 2849814374, 4135342816, 3620658552, 3320623700, 3510112735, 3681593591, 3567854202, 3415079869, 3076912581],
+        note: '',
+        level: 'major-section',
+        section: 'collections'
+      },
+      {
+        stt: 'A.I.1',
+        content: 'Các khoản phí thu về quỹ vận hành',
+        values: [3346035032, 2114922185, 3159956735, 2880764939, 2610515245, 2789811991, 2899229253, 2822046178, 2814903284, 2516348302],
+        note: '',
+        level: 'sub-section',
+        section: 'collections'
+      },
+      {
+        stt: '1',
+        content: 'Phí quản lý/ Management fee',
+        values: [2388164637, 1414321356, 2179576342, 2036239342, 1735909826, 1859864763, 1974973526, 1939227974, 1983974563, 1816459609],
+        note: '',
+        level: 'item',
+        section: 'collections'
+      },
+      {
+        stt: '2',
+        content: 'Bãi xe/ Parking fee',
+        values: [957870395, 700600829, 980380393, 844525597, 874605419, 929947228, 924255727, 882818204, 830928721, 699888693],
+        note: '',
+        level: 'item-bold',
+        section: 'collections'
+      },
+      {
+        stt: '2.1',
+        content: 'Xe cư dân đăng ký tháng',
+        values: [876237395, 629785829, 899670393, 762330597, 794605419, 848786628, 841095727, 806693204, 752593721, 624419420],
+        note: '',
+        level: 'sub-item',
+        section: 'collections'
+      },
+      {
+        stt: '2.2',
+        content: 'Xe vắng lãi',
+        values: [81633000, 70815000, 80710000, 82195000, 80000000, 81160600, 83160000, 76125000, 78335000, 75469273],
+        note: '',
+        level: 'sub-item',
+        section: 'collections'
+      },
+      {
+        stt: '2',
+        content: 'Lãi tiền gửi',
+        values: [null, null, null, null, null, null, null, null, null, null],
+        note: '',
+        level: 'item',
+        section: 'collections'
+      },
+
+      // A.I.2
+      {
+        stt: 'A.I.2',
+        content: 'Các khoản doanh thu khác',
+        values: [39016317, 19092785, 11805618, 15296546, 36350741, 22694079, 33889703, 17888756, 17461989, 20139748],
+        note: '',
+        level: 'sub-section',
+        section: 'collections'
+      },
+      {
+        stt: '2',
+        content: 'Lãi tiền gửi',
+        values: [12073339, 252431, 821470, 646546, 550741, 594079, 839703, 388766, 361989, 364748],
+        note: '',
+        level: 'item',
+        section: 'collections'
+      },
+      {
+        stt: '3',
+        content: 'Quảng cáo/ Advertising',
+        values: [null, null, null, null, null, null, null, null, null, null],
+        note: '',
+        level: 'item',
+        section: 'collections'
+      },
+      {
+        stt: '4',
+        content: 'Cho thuê/ Rentals',
+        values: [null, null, null, null, null, null, null, null, null, null],
+        note: '',
+        level: 'item',
+        section: 'collections'
+      },
+      {
+        stt: '5',
+        content: 'Thẻ từ/ Access card',
+        values: [13201600, 7100000, 10100000, 9500000, 13500000, 9300000, 10200000, 6100000, 7200000, 15800000],
+        note: '',
+        level: 'item',
+        section: 'collections'
+      },
+      {
+        stt: '6',
+        content: 'Xe bus/Bus',
+        values: [null, null, null, null, null, null, null, null, null, null],
+        note: '',
+        level: 'item',
+        section: 'collections'
+      },
+      {
+        stt: '7',
+        content: 'Phí sử dụng các phòng chức năng/Function Room Booking Fee',
+        values: [2475000, 4400000, null, 1650000, 4400000, 8800000, 14850000, 4400000, 9900000, 3575000],
+        note: '',
+        level: 'item',
+        section: 'collections'
+      },
+      {
+        stt: '8',
+        content: 'Phí khác/ Other fee (Phí phát ...)',
+        values: [11266378, 7340354, 884148, 3500000, 17900000, 4000000, 8000000, 7000000, null, 400000],
+        note: '',
+        level: 'item',
+        section: 'collections'
+      },
+
+      // A.I.3
+      {
+        stt: 'A.I.3',
+        content: 'Các khoản phí thu hộ - chi hộ',
+        values: [3271893675, 543909130, 532343359, 276277124, 253527305, 237585204, 304813642, 308310778, 254604007, 257098707],
+        note: '',
+        level: 'sub-section',
+        section: 'collections'
+      },
+      {
+        stt: '9',
+        content: 'Tiền nước/ Water fee',
+        values: [271257316, 179120934, 280351497, 221584543, 239624185, 226836046, 228710569, 242884155, 186923772, 187775532],
+        note: '',
+        level: 'item',
+        section: 'collections'
+      },
+      {
+        stt: '10',
+        content: 'Tiền điện/ Electricity fee',
+        values: [null, null, null, null, null, null, null, null, null, null],
+        note: '',
+        level: 'item',
+        section: 'collections'
+      },
+      {
+        stt: '11',
+        content: 'Lãi thanh toán phí chậm',
+        values: [521290, null, null, null, null, 2390605, 102712, 173022, 176840, null],
+        note: '',
+        level: 'item',
+        section: 'collections'
+      },
+      {
+        stt: '12',
+        content: 'Tiền gửi Tiết Kiệm',
+        values: [3000115069, null, null, null, null, null, null, null, null, null],
+        note: '',
+        level: 'item',
+        section: 'collections'
+      },
+      {
+        stt: '13',
+        content: 'Thu hộ phí vận chuyển chất thải rắn sinh hoạt/ Collecting solid waste transportation fees (2025)',
+        values: [null, 192488326, 132077816, null, 7345360, 4340440, 1669400, 667760, null, 631960],
+        note: '',
+        level: 'item',
+        section: 'collections'
+      },
+      {
+        stt: '14',
+        content: 'Thu hộ phí vận chuyển chất thải rắn sinh hoạt/ Collecting solid waste transportation fees (2026)',
+        values: [null, 172299870, 119914046, 54692581, 6557760, 4018113, 1788480, 1192320, null, null],
+        note: '',
+        level: 'item',
+        section: 'collections'
+      },
+      {
+        stt: '15',
+        content: 'Thù lao BQT/BOC\'s remuneration',
+        values: [null, null, null, null, null, null, 15363825, 15684240, 17762873, 18142830],
+        note: '',
+        level: 'item',
+        section: 'collections'
+      },
+      {
+        stt: '16',
+        content: 'Phí mua BH cháy nổ/Compulsory fire and explosion insurance Fee',
+        values: [null, null, null, null, null, null, 57178656, 47709281, 49740522, 50548385],
+        note: '',
+        level: 'item',
+        section: 'collections'
+      },
+
+      // A.I.4 & A.I.5
+      {
+        stt: 'A.I.4',
+        content: 'Các khoản thu khác (Khách hàng chuyển nhầm, hoàn tạm ứng, chi nộp tiền mặt...)',
+        values: [181913587, 107390274, 278737104, 240319943, 236730409, 189521461, 172160993, 200108480, 142710589, 195325824],
+        note: '',
+        level: 'sub-section',
+        section: 'collections'
+      },
+      {
+        stt: 'A.I.5',
+        content: 'Các khoản ký quỹ, cọc/ Collection from Deposits',
+        values: [186000000, 64500000, 152500000, 208000000, 183500000, 270500000, 271500000, 219500000, 185400000, 88000000],
+        note: '',
+        level: 'sub-section',
+        section: 'collections'
+      },
+
+      // A.II Total Paid
+      {
+        stt: 'A.II',
+        content: 'TỔNG CÁC KHOẢN ĐÃ CHI/ TOTAL OF PAID AMOUNT',
+        values: [5739165316, 1842864260, 4729953807, 3276729165, 5146607011, 1333313159, 3051486256, 3657448310, 4273408945, 1874849092],
+        note: '',
+        level: 'major-section',
+        section: 'expenses'
+      },
+
+      // A.II.1 Operating Expenses
+      {
+        stt: 'A.II.1',
+        content: 'Chi phí thường xuyên',
+        values: [3956715000, 459351646, 2391078247, 1977830805, 2172102325, 546858378, 1206739234, 1639086841, 2572252505, 489301790],
+        note: '',
+        level: 'sub-section',
+        section: 'expenses'
+      },
+      {
+        stt: '1',
+        content: 'Chi phí cố định và lương gộp BQL/ Fixed fee & staff cost (Savills)',
+        values: [2545775082, null, 671012012, 655653622, 628728427, null, null, null, 572813793, null],
+        note: '',
+        level: 'item',
+        section: 'expenses'
+      },
+      {
+        stt: '2',
+        content: 'Thuế môn bài',
+        values: [null, null, null, null, null, null, null, null, null, null],
+        note: '',
+        level: 'item',
+        section: 'expenses'
+      },
+      {
+        stt: '3',
+        content: 'Chi phí quản lý văn phòng/Administrative Expense',
+        values: [12259314, 15479804, 7329465, 23896402, 37183428, 867796, 23396302, 19144464, 888492, 1749040],
+        note: '',
+        level: 'item',
+        section: 'expenses'
+      },
+      {
+        stt: '4',
+        content: 'Phí giao dịch ngân hàng/Bank fee',
+        values: [1147640, null, null, 86484, 52669, null, null, null, null, null],
+        note: '',
+        level: 'item',
+        section: 'expenses'
+      },
+      {
+        stt: '5',
+        content: 'Phụ cấp/ Trợ cấp lương cho Ban quản trị/ Ban tự quản/Salary subsidies for BOC',
+        values: [94500000, null, null, 90000000, null, null, 107820000, null, null, null],
+        note: '',
+        level: 'item',
+        section: 'expenses'
+      },
+      {
+        stt: '6',
+        content: 'Access card / In ấn thẻ từ',
+        values: [null, null, 2376000, 2376000, null, null, 2376000, null, null, null],
+        note: '',
+        level: 'item',
+        section: 'expenses'
+      },
+      {
+        stt: '7',
+        content: 'Dịch vụ bảo vệ/Security service',
+        values: [516908454, null, 487552750, 487552750, 487552750, null, 487552750, 487552750, 975105500, 487552750],
+        note: '',
+        level: 'item',
+        section: 'expenses'
+      },
+      {
+        stt: '8',
+        content: 'Phí bảo vệ tăng cường (định kỳ)/Extra fee for Security (Monthly)',
+        values: [null, null, null, null, null, null, null, null, null, null],
+        note: '',
+        level: 'item',
+        section: 'expenses'
+      },
+      {
+        stt: '9',
+        content: 'Dịch vụ vệ sinh công cộng/Cleaning service for common area',
+        values: [445161960, null, 445010582, null, 445010582, 445010582, 445010582, 890118717, 890323920, null],
+        note: '',
+        level: 'item',
+        section: 'expenses'
+      },
+      {
+        stt: '10',
+        content: 'Thu gom rác sinh hoạt/Normal garbage collection',
+        values: [24948000, null, 49896000, 657461737, null, null, 24948000, 49896000, 24948000, null],
+        note: '',
+        level: 'item',
+        section: 'expenses'
+      },
+      {
+        stt: '11',
+        content: 'Hazardous garbage collection/Thu gom rác thải nguy hại',
+        values: [null, null, null, null, null, null, null, null, null, null],
+        note: '',
+        level: 'item',
+        section: 'expenses'
+      },
+      {
+        stt: '12',
+        content: 'Dịch vụ xử lý côn trùng/Pest control service',
+        values: [29160000, null, 29160000, 14580000, 14580000, 14580000, 14580000, 14580000, 14580000, null],
+        note: '',
+        level: 'item',
+        section: 'expenses'
+      },
+      {
+        stt: '13',
+        content: 'Thuê cây nội thất/Planting Rental',
+        values: [7192800, 17192800, 7192800, 7591130, 14385600, null, 7192800, 7192800, 7192800, null],
+        note: '',
+        level: 'item',
+        section: 'expenses'
+      },
+      {
+        stt: '14',
+        content: 'Dịch vụ chăm sóc cảnh quan, cây cảnh/Landscaping service',
+        values: [86400000, null, 172800000, null, 86400000, 86400000, 86400000, 86400000, 86400000, null],
+        note: '',
+        level: 'item',
+        section: 'expenses'
+      },
+      {
+        stt: '15',
+        content: 'Phí thuê xe/Car Rental',
+        values: [null, null, null, null, null, null, null, null, null, null],
+        note: '',
+        level: 'item',
+        section: 'expenses'
+      },
+      {
+        stt: '16',
+        content: 'Hợp đồng bảo trì hệ thống kiểm soát và liên lạc nội bộ/Access control and intercom system maintenance contract',
+        values: [112902750, 314288950, null, null, 423275605, null, null, null, null, null],
+        note: '- VISTAVER TẠM ỨNG CHI PHÍ LẮP ĐẶT HỆ THỐNG FACE ID THEO HĐ SỐ HDDV_C26_VISTA_ACS2803\n- Thanh toán đợt 2-45 CP lắp đặt hệ thống kiểm soát an ninh theo HĐ số HDTC.NC25.VISTA_ASC03 Ngày 15.01.26',
+        level: 'item',
+        section: 'expenses'
+      },
+      {
+        stt: '17',
+        content: 'Access control and intercom system spare parts / Vật tư, linh kiện thay thế hệ thống kiểm soát và liên lạc nội bộ',
+        values: [null, null, null, null, null, null, null, null, null, null],
+        note: '',
+        level: 'item',
+        section: 'expenses'
+      },
+      {
+        stt: '18',
+        content: 'Hợp đồng bảo trì hệ thống quản lý bãi xe/Parking system maintenance contract',
+        values: [47041000, null, null, null, null, null, null, null, null, null],
+        note: 'TT đợt 3 cp cải tạo hệ thống bãi xe theo HĐ CYB-VV/01/HDKT/2025',
+        level: 'item',
+        section: 'expenses'
+      },
+      {
+        stt: '19',
+        content: 'Parking system spare parts / Vật tư, linh kiện thay thế hệ thống quản lý bãi xe',
+        values: [null, null, null, null, null, null, null, null, null, null],
+        note: '',
+        level: 'item',
+        section: 'expenses'
+      },
+      {
+        stt: '20',
+        content: 'Others / Khác',
+        values: [8424000, null, 5037120, null, 2490122, null, null, 19300000, null, null],
+        note: '',
+        level: 'item',
+        section: 'expenses'
+      },
+      {
+        stt: '21',
+        content: 'Hợp đồng bảo trì máy móc thiết bị phòng gym/Maintenance contract',
+        values: [null, 44025012, null, null, 12935592, null, null, null, null, null],
+        note: '- CP THAY THẾ PHỤ TÙNG MÁY TẬP THỂ DỤC THEO HĐ 227 NGÀY 11.12.25\n- CP THAY BĂNG TẢI CAO SU CHO MÁY CHẠY BỘ THEO HÓA ĐƠN 66 NGÀY 19.01.26',
+        level: 'item',
+        section: 'expenses'
+      },
+      {
+        stt: '22',
+        content: 'Vật dụng nhà vệ sinh công cộng/Toiletries (public toilets)',
+        values: [null, null, 15252093, null, 19507550, null, null, 14971550, null, null],
+        note: '',
+        level: 'item',
+        section: 'expenses'
+      },
+      {
+        stt: '23',
+        content: 'Chi phí hóa chất xử lý hồ bơi, hồ cảnh quan/Chemicals for pool, for fountains',
+        values: [null, 30554280, 30554280, 30554280, null, null, null, 49930560, null, null],
+        note: '',
+        level: 'item',
+        section: 'expenses'
+      },
+      {
+        stt: '24',
+        content: 'Spare parts / Vật tư, linh kiện thay thế - Bảo trì hồ bơi',
+        values: [7020000, null, null, null, null, null, null, null, null, null],
+        note: 'Vòng tay hồ bơi',
+        level: 'item',
+        section: 'expenses'
+      },
+      {
+        stt: '25',
+        content: 'Vật tư thay thế nhỏ/Construction Materials for replace',
+        values: [17874000, 27604800, 2611807, null, null, null, 7462800, null, null, null],
+        note: '',
+        level: 'item',
+        section: 'expenses'
+      },
+      {
+        stt: '26',
+        content: 'Mua trang thiết bị mới cho khu công cộng/New capital expenditure for Common area',
+        values: [null, 10206000, 19980000, 8078400, null, null, null, null, null, null],
+        note: '',
+        level: 'item',
+        section: 'expenses'
+      },
+
+      // A.II.2 Periodic Expenses
+      {
+        stt: 'A.II.2',
+        content: 'Chi phí định kỳ',
+        values: [62554000, 52425000, 60813000, 0, 459913898, 5170989, 190000000, 7776000, 19000000, 0],
+        note: '',
+        level: 'sub-section',
+        section: 'expenses'
+      },
+      {
+        stt: '1',
+        content: 'Staff related cost (Training, rewards) / Huấn luyện bắt buộc hàng năm (ATLD, PCCC)',
+        values: [null, null, null, null, null, null, null, null, null, null],
+        note: '',
+        level: 'item',
+        section: 'expenses'
+      },
+      {
+        stt: '2',
+        content: 'Office equipment maintenance / Bảo trì trang thiết bị văn phòng BQL',
+        values: [null, null, null, null, null, null, null, null, null, null],
+        note: '',
+        level: 'item',
+        section: 'expenses'
+      },
+      {
+        stt: '3',
+        content: 'Auditing fee of operation / Chi phí kiểm toán vận hành',
+        values: [null, null, null, null, null, null, null, null, null, null],
+        note: '',
+        level: 'item',
+        section: 'expenses'
+      },
+      {
+        stt: '4',
+        content: 'Hoạt động cộng đồng và sự kiện/Communication and Event',
+        values: [27054000, 52425000, 60813000, null, 46099000, 5170989, null, null, null, null],
+        note: 'Sự kiện 8.3 và 1.6 (mua quà)',
+        level: 'item',
+        section: 'expenses'
+      },
+      {
+        stt: '5',
+        content: 'In ấn thẻ từ/Access card',
+        values: [10500000, null, null, null, null, null, null, null, null, null],
+        note: '',
+        level: 'item',
+        section: 'expenses'
+      },
+      {
+        stt: '6',
+        content: 'Diễn tập PCCC/Fire Drill',
+        values: [25000000, null, null, null, null, null, null, null, null, null],
+        note: '',
+        level: 'item',
+        section: 'expenses'
+      },
+      {
+        stt: '7',
+        content: 'Hội nghị Nhà chung cư / Hội nghị cư dân/Annual General Meeting',
+        values: [null, null, null, null, null, null, null, null, 19000000, null],
+        note: '',
+        level: 'item',
+        section: 'expenses'
+      },
+      {
+        stt: '8',
+        content: 'Vệ sinh mặt ngoài tòa nhà/External Cleaning service',
+        values: [null, null, null, null, null, null, 190000000, null, null, null],
+        note: '',
+        level: 'item',
+        section: 'expenses'
+      },
+      {
+        stt: '9',
+        content: 'Thu gom rác thải nguy hại/Hazardous garbage collection',
+        values: [null, null, null, null, null, null, null, null, null, null],
+        note: '',
+        level: 'item',
+        section: 'expenses'
+      },
+      {
+        stt: '10',
+        content: 'Bảo hiểm/ Insurance',
+        values: [null, null, null, null, 413814898, null, null, null, null, null],
+        note: '',
+        level: 'item',
+        section: 'expenses'
+      },
+      {
+        stt: '11',
+        content: 'Báo cáo môi trường định kỳ /Outsourcing Environmental Report',
+        values: [null, null, null, null, null, null, null, null, null, null],
+        note: '',
+        level: 'item',
+        section: 'expenses'
+      },
+      {
+        stt: '12',
+        content: 'Chi phí kiểm định nước/water testing',
+        values: [null, null, null, null, null, null, null, null, null, null],
+        note: '',
+        level: 'item',
+        section: 'expenses'
+      },
+      {
+        stt: '13',
+        content: 'Kiểm định nước hồ bơi/Pool water testing',
+        values: [null, null, null, null, null, null, null, null, null, null],
+        note: '',
+        level: 'item',
+        section: 'expenses'
+      },
+      {
+        stt: '14',
+        content: 'Phí kết nối với Trung tâm PCCC thành phố/Connect to HCMC Fire Fighting Dept',
+        values: [null, null, null, null, null, null, null, 7776000, null, null],
+        note: '',
+        level: 'item',
+        section: 'expenses'
+      },
+      {
+        stt: '15',
+        content: 'Safety Inspection for Fire Extinguisher Cylinders / Kiểm định an toàn cho các bình chữa cháy (Bình CO2, Bình FM200, bình ...)',
+        values: [null, null, null, null, null, null, null, null, null, null],
+        note: '',
+        level: 'item',
+        section: 'expenses'
+      },
+
+      // A.II.3 Energy Expenses
+      {
+        stt: 'A.II.3',
+        content: 'Chi phí Năng lượng',
+        values: [1027889551, 519462017, 1272757837, 962317637, 1032943536, 644143260, 1038917461, 947611242, 1299774698, 1058091722],
+        note: '',
+        level: 'sub-section',
+        section: 'expenses'
+      },
+      {
+        stt: '1',
+        content: 'Nước công cộng khu vực chung/Water for Common Area and Facilities',
+        values: [398681077, null, 786235598, 409236447, 365754376, null, 453243578, 397585944, 736732398, 385556793],
+        note: '',
+        level: 'item',
+        section: 'expenses'
+      },
+      {
+        stt: '2',
+        content: 'Điện khu công cộng khu vực chung/Electricity for Common Area',
+        values: [591948474, 519462017, 486522239, 553081190, 667189160, 644143260, 585673883, 550025298, 563042300, 672534929],
+        note: '',
+        level: 'item',
+        section: 'expenses'
+      },
+      {
+        stt: '3',
+        content: 'Dầu chạy máy phát điện khu công cộng/Diesel for back up generators of Common Area and Facilities',
+        values: [37260000, null, null, null, null, null, null, null, null, null],
+        note: '',
+        level: 'item',
+        section: 'expenses'
+      },
+
+      // A.II.4 Other Approved Budget Expenses (Spans Page 1 -> Page 2 seamlessly)
+      {
+        stt: 'A.II.4',
+        content: 'Chi phí khác trong ngân sách đã được ký duyệt',
+        values: [0, 185285600, 5032440, 0, 56732990, 0, null, 23230616, 0, 0],
+        note: '',
+        level: 'sub-section',
+        section: 'expenses'
+      },
+      {
+        stt: '1',
+        content: 'Khác/Others',
+        values: [null, null, null, null, null, null, null, null, null, null],
+        note: '',
+        level: 'item',
+        section: 'expenses'
+      },
+      {
+        stt: '2',
+        content: 'Phí vệ sinh tăng cường/Extra fee for Cleaning on extra-ordinary occasions',
+        values: [null, null, null, null, null, null, null, null, null, null],
+        note: '',
+        level: 'item',
+        section: 'expenses'
+      },
+      {
+        stt: '3',
+        content: 'Chi phí trồng cây, mua cây bổ sung/Planting cost',
+        values: [null, null, null, null, null, null, null, null, null, null],
+        note: '',
+        level: 'item',
+        section: 'expenses'
+      },
+      {
+        stt: '4',
+        content: 'Dụng cụ vệ sinh hồ bơi/Pool Cleaning Equipment',
+        values: [null, null, null, null, null, null, null, null, null, null],
+        note: '',
+        level: 'item',
+        section: 'expenses'
+      },
+      {
+        stt: '5',
+        content: 'Chi phí thay thế, khắc phục sự cố cho các trường hợp không được bảo hiểm bồi thường, và miễn trừ khi được BH bồi thường: kính mặt ngoài, Canopy và các thiết bị khác... /Replacement cost for damage cases, which claim for damages are refused by Assurance Company, or for Exemption Amount (Canopy Glasses broken down; Water flooding to Lifts...)',
+        values: [null, null, null, null, null, null, null, null, null, null],
+        note: '',
+        level: 'item',
+        section: 'expenses'
+      },
+      {
+        stt: '6',
+        content: 'Contingency / Dự phòng',
+        values: [null, null, null, null, null, null, null, null, null, null],
+        note: '',
+        level: 'item',
+        section: 'expenses'
+      },
+      {
+        stt: '7',
+        content: 'Chi phí mua trang thiết bị/New capital expenditure',
+        values: [null, null, null, null, 37225440, null, null, null, null, null],
+        note: '',
+        level: 'item',
+        section: 'expenses'
+      },
+      {
+        stt: '8',
+        content: 'Renovation for facade and landscape of Building / Cải tạo nâng cấp khu công cộng bên ngoài tòa nhà (sân vườn, sơn mặt ngoài)',
+        values: [null, 13014000, null, null, null, null, null, null, null, null],
+        note: '- TT CP SƠN SỬA GHẾ BBQ\n- TT CP DỤNG CỤ VỆ SINH HỒ BƠI THEO HÓA ĐƠN 435 NGÀY 10.12.25',
+        level: 'item',
+        section: 'expenses'
+      },
+      {
+        stt: '9',
+        content: 'Spare-parts for public areas within the building / Vật tư thay thế, sửa chữa khu công cộng, bên trong tòa nhà',
+        values: [null, null, null, null, 19507550, null, null, null, null, null],
+        note: '',
+        level: 'item',
+        section: 'expenses'
+      },
+      {
+        stt: '10',
+        content: 'Vật tư, linh kiện thay thế hệ thống camera quan sát/CCTV camera system spare parts',
+        values: [null, null, null, null, null, null, null, null, null, null],
+        note: '',
+        level: 'item',
+        section: 'expenses'
+      },
+      {
+        stt: '11',
+        content: 'Sửa chữa & bảo dưỡng/ Repairs and Maintenance',
+        values: [null, 13500000, 2637000, null, null, null, null, null, null, null],
+        note: 'TT CP thi công lưới tennis theo HĐ 37 ngày 24/10/25',
+        level: 'item',
+        section: 'expenses'
+      },
+      {
+        stt: '12',
+        content: 'Safety Inspection for air-pressure of Staircase Pressurized Fans / Kiểm định áp suất quạt tạo áp thang bộ',
+        values: [null, 19440000, null, null, null, null, null, null, null, null],
+        note: '',
+        level: 'item',
+        section: 'expenses'
+      },
+      {
+        stt: '13',
+        content: 'Safety Inspection for Pressurized Cylinders/ Tanks / Kiểm định an toàn cho các bình tích áp (Cụm bơm tăng áp, bơm chữa cháy)',
+        values: [null, 6480000, null, null, null, null, null, null, null, null],
+        note: '',
+        level: 'item',
+        section: 'expenses'
+      },
+      {
+        stt: '14',
+        content: 'STP Repair/ Replacement / Sửa chữa, thay thế thiết bị vật tư cho hệ thống xử lý nước thải',
+        values: [null, null, null, null, null, null, null, null, null, null],
+        note: '',
+        level: 'item',
+        section: 'expenses'
+      },
+      {
+        stt: '15',
+        content: 'Cải tạo nâng cấp/Renovation - Tiện ích',
+        values: [null, 132851600, 2395440, null, null, null, null, 23230616, null, null],
+        note: 'TT Đợt 2 CP cải tạo sảnh lễ tân theo HĐ 1010/HDTC/VV-LUA',
+        level: 'item',
+        section: 'expenses'
+      },
+      // Page 2 continuation items 16, 17, 18 of A.II.4
+      {
+        stt: '16',
+        content: 'Vật tư, linh kiện thay thế máy lạnh/Split air-con spare parts',
+        values: [null, null, null, null, null, null, null, null, null, null],
+        note: '',
+        level: 'item',
+        section: 'expenses'
+      },
+      {
+        stt: '17',
+        content: 'Safety Inspection for Lightening Arrestor / Kiểm định điện trở tiếp địa hệ thống chống sét',
+        values: [null, null, null, null, null, null, null, null, null, null],
+        note: '',
+        level: 'item',
+        section: 'expenses'
+      },
+      {
+        stt: '18',
+        content: 'Safety Inspection for Lifts / Kiểm định an toàn thang máy',
+        values: [null, null, null, null, null, null, null, null, null, null],
+        note: '',
+        level: 'item',
+        section: 'expenses'
+      },
+
+      // A.II.5 Unbudgeted Expenses
+      {
+        stt: 'A.II.5',
+        content: 'Chi phí phát sinh ngoài ngân sách',
+        values: [0, 0, 220091119, 0, null, null, 269827022, 9522000, 40975000, 0],
+        note: '',
+        level: 'sub-section',
+        section: 'expenses'
+      },
+      {
+        stt: '1',
+        content: 'Miscellaneous / Các khoản phát sinh khác BOC đã ký duyệt',
+        values: [null, null, 220091119, null, null, 19830666, 269827022, 9522000, 40975000, null],
+        note: 'Máy in thẻ từ',
+        level: 'item',
+        section: 'expenses'
+      },
+
+      // A.II.6 Tax Liabilities
+      {
+        stt: 'A.II.6',
+        content: 'Nghĩa vụ thuế của dự án/ Tax liabilities',
+        values: [0, 0, 0, null, null, null, null, null, null, null],
+        note: '',
+        level: 'sub-section',
+        section: 'expenses'
+      },
+      {
+        stt: '1',
+        content: 'Thuế môn bài/ License tax',
+        values: [null, null, null, null, null, null, null, null, null, null],
+        note: '',
+        level: 'item',
+        section: 'expenses'
+      },
+      {
+        stt: '2',
+        content: 'Thuế GTGT/ Value Added Tax (VAT)',
+        values: [null, null, null, null, null, null, null, null, null, null],
+        note: '',
+        level: 'item',
+        section: 'expenses'
+      },
+      {
+        stt: '3',
+        content: 'Thuế TNDN/ Corporate Income Tax (CIT)',
+        values: [null, null, null, null, null, null, null, null, null, null],
+        note: '',
+        level: 'item',
+        section: 'expenses'
+      },
+
+      // A.II.7 to A.II.11
+      {
+        stt: 'A.II.7',
+        content: 'Chi trả tiền ký quỹ, cọc/ Paid amount for Deposits',
+        values: [340000000, 318000000, 294000000, 101000000, 173500000, 80500000, 296500000, 234000000, 210000000, 126500000],
+        note: '',
+        level: 'sub-section',
+        section: 'expenses'
+      },
+      {
+        stt: 'A.II.8',
+        content: 'Các khoản chi khác (hoàn tiền khách hàng chuyển nhầm, hủy thanh toán, tạm ứng NCC, chi nộp rút tiền mặt...)',
+        values: [352006765, 308339997, 486181164, 235580723, 494435229, 56640532, 49502539, 82249998, 131406742, 200955580],
+        note: '',
+        level: 'sub-section',
+        section: 'expenses'
+      },
+      {
+        stt: 'A.II.9',
+        content: 'Chuyển Kết dư KVC về TK BQT',
+        values: [null, null, null, null, 517575962, null, null, 681818000, null, null],
+        note: '',
+        level: 'sub-section',
+        section: 'expenses'
+      },
+      {
+        stt: 'A.II.10',
+        content: 'Chuyển quỹ kết dư về tài khoản đứng tên Ban quản trị',
+        values: [null, null, null, null, 239403071, null, null, 32153613, null, null],
+        note: '',
+        level: 'sub-section',
+        section: 'expenses'
+      },
+      {
+        stt: 'A.II.11',
+        content: 'Chuyển tiền thu hộ phí vận chuyển rác cho UBND',
+        values: [null, null, null, null, null, null, null, null, null, null],
+        note: '',
+        level: 'sub-section',
+        section: 'expenses'
+      },
+
+      // (B) Opening Balance & (C) Closing Balance
+      {
+        stt: '(B)',
+        content: 'Số dư tiền mặt, tiền gửi ngân hàng đầu kỳ/ Opening balance of petty cash & bank account',
+        values: [2558760528, 3844453823, 4851403937, 4256792946, 4600722333, 2774739022, 4951538598, 5581645932, 5492051825, 4633722749],
+        note: '',
+        level: 'balance-row',
+        section: 'summary'
+      },
+      {
+        stt: '(C)',
+        content: 'SỐ DƯ TIỀN MẶT, TIỀN GỬI NGÂN HÀNG CUỐI KỲ/ Closing balance of petty cash & bank account : (A)+(B)',
+        values: [3844453823, 4851403937, 4256792946, 4600722333, 2774739022, 4951538598, 5581645932, 5492051825, 4633722749, 5835786238],
+        note: '',
+        level: 'top-summary',
+        section: 'summary'
+      }
+    ];
+
+    // Helper: Format numbers in accounting style (parentheses for negative, dash for 0, empty for null)
+    function formatAccountingNumber(val) {
+      if (val === null || val === undefined) return '';
+      if (val === 0) return '-';
+      const absVal = Math.abs(val).toLocaleString('en-US');
+      return val < 0 ? `(${absVal})` : absVal;
+    }
+
+    // Helper: Calculate 10-Month Total for a row
+    // Note: For Opening Balance (B) and Closing Balance (C), showing period start/end or N/A is standard,
+    // while for flow items (A, A.I, A.II, etc.) it sums all 10 months.
+    function computeRowTotal(row) {
+      if (row.stt === '(B)') return row.values[0]; // Opening balance at start of 10-month period
+      if (row.stt === '(C)') return row.values[row.values.length - 1]; // Closing balance at end of 10-month period
+      const hasAnyNumber = row.values.some(v => v !== null && v !== undefined);
+      if (!hasAnyNumber) return null;
+      return row.values.reduce((acc, v) => acc + (v || 0), 0);
+    }
+
+    // Helper: Check if a row has any non-null, non-zero value across all 10 months
+    function isRowEmpty(row) {
+      return row.values.every(v => v === null || v === undefined || v === 0);
+    }
+
+    // Application State
+    let currentFilter = 'all';
+    let searchQuery = '';
+    let hideEmpty = false;
+
+    // DOM References
+    const tableBody = document.getElementById('financialTableBody');
+    const searchInput = document.getElementById('searchInput');
+    const clearSearchBtn = document.getElementById('clearSearchBtn');
+    const hideEmptyToggle = document.getElementById('hideEmptyToggle');
+    const filterTabs = document.querySelectorAll('.filter-tab');
+    const visibleRowCountEl = document.getElementById('visibleRowCount');
+    const totalRowCountEl = document.getElementById('totalRowCount');
+    const emptyStateEl = document.getElementById('emptyState');
+
+    // Render Table Rows
+    function renderTable() {
+      const normalizedQuery = searchQuery.trim().toLowerCase();
+      totalRowCountEl.textContent = FINANCIAL_ROWS.length;
+
+      let visibleCount = 0;
+      const fragments = [];
+
+      FINANCIAL_ROWS.forEach((row) => {
+        // 1. Category Filter
+        if (currentFilter === 'summary') {
+          const summaryCodes = ['(A)', 'A.I', 'A.II', '(B)', '(C)'];
+          if (!summaryCodes.includes(row.stt)) return;
+        } else if (currentFilter === 'collections') {
+          if (row.section !== 'collections') return;
+        } else if (currentFilter === 'expenses') {
+          if (row.section !== 'expenses') return;
+        } else if (currentFilter === 'notes') {
+          if (!row.note || row.note.trim() === '') return;
+        }
+
+        // 2. Hide Empty Rows Filter
+        if (hideEmpty && isRowEmpty(row)) {
+          return;
+        }
+
+        // 3. Search Filter
+        if (normalizedQuery) {
+          const matchStt = row.stt.toLowerCase().includes(normalizedQuery);
+          const matchContent = row.content.toLowerCase().includes(normalizedQuery);
+          const matchNote = row.note && row.note.toLowerCase().includes(normalizedQuery);
+          if (!matchStt && !matchContent && !matchNote) return;
+        }
+
+        visibleCount++;
+
+        // Row Styling based on Hierarchy Level
+        let rowBgClass = 'bg-white hover:bg-slate-50/90';
+        let stickyBgClass = 'bg-white group-hover:bg-slate-50';
+        let textStyleClass = 'text-slate-700 font-normal';
+        let contentPaddingClass = 'pl-3.5';
+
+        if (row.level === 'top-summary') {
+          rowBgClass = 'bg-emerald-50/95 hover:bg-emerald-100/70 border-y-2 border-emerald-300';
+          stickyBgClass = 'bg-emerald-50 group-hover:bg-emerald-100/80';
+          textStyleClass = 'text-emerald-950 font-extrabold';
+        } else if (row.level === 'major-section') {
+          rowBgClass = 'bg-slate-200/80 hover:bg-slate-200 border-y border-slate-300';
+          stickyBgClass = 'bg-slate-200 group-hover:bg-slate-200';
+          textStyleClass = 'text-slate-900 font-bold';
+        } else if (row.level === 'sub-section') {
+          rowBgClass = 'bg-slate-100/90 hover:bg-slate-100';
+          stickyBgClass = 'bg-slate-100 group-hover:bg-slate-100';
+          textStyleClass = 'text-slate-900 font-bold';
+        } else if (row.level === 'balance-row') {
+          rowBgClass = 'bg-teal-50/70 hover:bg-teal-50';
+          stickyBgClass = 'bg-teal-50 group-hover:bg-teal-50';
+          textStyleClass = 'text-teal-950 font-bold';
+        } else if (row.level === 'item-bold') {
+          textStyleClass = 'text-slate-800 font-semibold';
+        } else if (row.level === 'sub-item') {
+          contentPaddingClass = 'pl-7';
+          textStyleClass = 'text-slate-600 font-normal italic';
+        }
+
+        // Format 10-month value cells
+        const valueCellsHtml = row.values.map((val) => {
+          const formatted = formatAccountingNumber(val);
+          const isNegative = typeof val === 'number' && val < 0;
+          const numColor = isNegative
+            ? 'text-red-600 font-bold'
+            : (val === 0 ? 'text-slate-400' : '');
+          return `<td class="px-3 py-2.5 text-right tabular-nums whitespace-nowrap ${numColor}">${formatted}</td>`;
+        }).join('');
+
+        // Format Total Column
+        const totalVal = computeRowTotal(row);
+        const formattedTotal = formatAccountingNumber(totalVal);
+        const isTotalNeg = typeof totalVal === 'number' && totalVal < 0;
+        const totalLabelBadge = row.stt === '(B)'
+          ? '<span class="block text-[10px] font-normal text-slate-400">Đầu kỳ 01/26</span>'
+          : (row.stt === '(C)' ? '<span class="block text-[10px] font-normal text-emerald-700">Cuối kỳ 10/26</span>' : '');
+
+        const totalCellHtml = `
+          <td class="px-3.5 py-2.5 text-right tabular-nums whitespace-nowrap font-bold border-l border-slate-200 bg-emerald-50/40 ${isTotalNeg ? 'text-red-600' : 'text-emerald-950'}">
+            ${formattedTotal}
+            ${totalLabelBadge}
+          </td>
+        `;
+
+        // Format Note Cell
+        const noteHtml = row.note
+          ? `<div class="whitespace-pre-line text-[11px] leading-relaxed text-amber-900 bg-amber-50/80 border border-amber-200/80 rounded-lg px-2.5 py-1.5">${escapeHtml(row.note)}</div>`
+          : '';
+
+        fragments.push(`
+          <tr class="group transition-colors ${rowBgClass} ${textStyleClass}">
+            <td class="sticky-col-1 ${stickyBgClass} px-3 py-2.5 w-[84px] min-w-[84px] max-w-[84px] border-r border-slate-200 align-top">
+              ${escapeHtml(row.stt)}
+            </td>
+            <td class="sticky-col-2 ${stickyBgClass} ${contentPaddingClass} pr-3.5 py-2.5 min-w-[260px] sm:min-w-[340px] max-w-[360px] border-r border-slate-200 align-top leading-snug">
+              ${escapeHtml(row.content)}
+            </td>
+            ${valueCellsHtml}
+            ${totalCellHtml}
+            <td class="px-3.5 py-2.5 min-w-[260px] max-w-[360px] border-l border-slate-200 align-top">
+              ${noteHtml}
+            </td>
+          </tr>
+        `);
+      });
+
+      tableBody.innerHTML = fragments.join('');
+      visibleRowCountEl.textContent = visibleCount;
+
+      if (visibleCount === 0) {
+        emptyStateEl.classList.remove('hidden');
+      } else {
+        emptyStateEl.classList.add('hidden');
+      }
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return str
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    // Event Listeners for Filters & Search
+    searchInput.addEventListener('input', (e) => {
+      searchQuery = e.target.value;
+      clearSearchBtn.classList.toggle('hidden', searchQuery.length === 0);
+      renderTable();
+    });
+
+    clearSearchBtn.addEventListener('click', () => {
+      searchQuery = '';
+      searchInput.value = '';
+      clearSearchBtn.classList.add('hidden');
+      searchInput.focus();
+      renderTable();
+    });
+
+    hideEmptyToggle.addEventListener('change', (e) => {
+      hideEmpty = e.target.checked;
+      renderTable();
+    });
+
+    filterTabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        filterTabs.forEach((t) => {
+          t.classList.remove('active', 'bg-emerald-700', 'text-white', 'shadow-sm', 'font-semibold');
+          t.classList.add('bg-white', 'text-slate-600', 'border', 'border-slate-200', 'font-medium');
+        });
+        tab.classList.add('active', 'bg-emerald-700', 'text-white', 'shadow-sm', 'font-semibold');
+        tab.classList.remove('bg-white', 'text-slate-600', 'border', 'border-slate-200', 'font-medium');
+        currentFilter = tab.dataset.filter;
+        renderTable();
+      });
+    });
+
+    // CSV / Excel Export Functionality (UTF-8 with BOM for proper Vietnamese characters in Excel)
+    document.getElementById('exportCsvBtn').addEventListener('click', () => {
+      const headers = ['STT / No.', 'Nội dung / Content', ...MONTHS, 'Tổng 10 tháng / 10-Month Total', 'Ghi chú / Note'];
+      const csvLines = [headers.map(csvEscape).join(',')];
+
+      FINANCIAL_ROWS.forEach((row) => {
+        const totalVal = computeRowTotal(row);
+        const line = [
+          row.stt,
+          row.content,
+          ...row.values.map(v => (v === null || v === undefined ? '' : v)),
+          totalVal === null || totalVal === undefined ? '' : totalVal,
+          row.note || ''
+        ];
+        csvLines.push(line.map(csvEscape).join(','));
+      });
+
+      const bom = '\uFEFF';
+      const blob = new Blob([bom + csvLines.join('\r\n')], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'Bao_Cao_Tai_Chinh_QVH_Vista_Verde_01-10_2026.csv';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+
+      showToast('Đã tải xuống file Excel/CSV báo cáo đầy đủ!');
+    });
+
+    function csvEscape(value) {
+      const str = String(value ?? '');
+      if (str.includes(',') || str.includes('"') || str.includes('\n')) {
+        return `"${str.replace(/"/g, '""')}"`;
+      }
+      return str;
+    }
+
+    function showToast(msg) {
+      const banner = document.getElementById('toastBanner');
+      const msgEl = document.getElementById('toastMessage');
+      msgEl.textContent = msg;
+      banner.classList.remove('hidden');
+      setTimeout(() => {
+        banner.classList.add('hidden');
+      }, 3200);
+    }
+
+    // Initialize Chart.js Visualizations
+    function initCharts() {
+      const rowAI = FINANCIAL_ROWS.find(r => r.stt === 'A.I');
+      const rowAII = FINANCIAL_ROWS.find(r => r.stt === 'A.II');
+      const rowC = FINANCIAL_ROWS.find(r => r.stt === '(C)');
+
+      // Chart 1: Monthly Collection vs Expenditure (Bars) & Closing Balance (Line)
+      const ctx1 = document.getElementById('cashflowChart').getContext('2d');
+      new Chart(ctx1, {
+        type: 'bar',
+        data: {
+          labels: MONTHS,
+          datasets: [
+            {
+              label: 'Tổng đã thu (A.I)',
+              data: rowAI.values,
+              backgroundColor: 'rgba(16, 185, 129, 0.85)',
+              hoverBackgroundColor: 'rgba(5, 150, 105, 1)',
+              borderRadius: 6,
+              order: 2
+            },
+            {
+              label: 'Tổng đã chi (A.II)',
+              data: rowAII.values,
+              backgroundColor: 'rgba(245, 158, 11, 0.85)',
+              hoverBackgroundColor: 'rgba(217, 119, 6, 1)',
+              borderRadius: 6,
+              order: 3
+            },
+            {
+              label: 'Số dư cuối kỳ (C)',
+              data: rowC.values,
+              type: 'line',
+              borderColor: '#0f172a',
+              backgroundColor: '#0f172a',
+              borderWidth: 2.5,
+              pointRadius: 4,
+              pointHoverRadius: 6,
+              tension: 0.28,
+              order: 1
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          interaction: {
+            mode: 'index',
+            intersect: false
+          },
+          plugins: {
+            legend: {
+              position: 'top',
+              labels: {
+                usePointStyle: true,
+                padding: 16,
+                font: { family: 'Inter', size: 12, weight: '600' }
+              }
+            },
+            tooltip: {
+              backgroundColor: '#0f172a',
+              padding: 12,
+              titleFont: { family: 'Inter', size: 13, weight: '700' },
+              bodyFont: { family: 'Inter', size: 12 },
+              callbacks: {
+                label: function(context) {
+                  const val = context.parsed.y || 0;
+                  return ` ${context.dataset.label}: ${val.toLocaleString('en-US')} VND`;
+                }
+              }
+            }
+          },
+          scales: {
+            x: {
+              grid: { display: false },
+              ticks: { font: { family: 'Inter', size: 11, weight: '600' }, color: '#475569' }
+            },
+            y: {
+              beginAtZero: true,
+              grid: { color: '#f1f5f9' },
+              ticks: {
+                font: { family: 'Inter', size: 11 },
+                color: '#64748b',
+                callback: function(value) {
+                  return (value / 1e9).toFixed(1) + ' tỷ';
+                }
+              }
+            }
+          }
+        }
+      });
+
+      // Chart 2: Breakdown of Main Expenses (10-Month Totals)
+      const sumCategory = (sttCode) => {
+        const found = FINANCIAL_ROWS.find(r => r.stt === sttCode);
+        return found ? found.values.reduce((a, b) => a + (b || 0), 0) : 0;
+      };
+
+      const expOperating = sumCategory('A.II.1'); // 17,411,316,771
+      const expPeriodic = sumCategory('A.II.2');  // 857,652,887
+      const expEnergy = sumCategory('A.II.3');    // 9,803,908,961
+      const expOtherCombined =
+        sumCategory('A.II.4') +
+        sumCategory('A.II.5') +
+        sumCategory('A.II.6') +
+        sumCategory('A.II.7') +
+        sumCategory('A.II.8') +
+        sumCategory('A.II.9') +
+        sumCategory('A.II.10'); // 6,852,946,702
+
+      const breakdownItems = [
+        {
+          label: 'A.II.1 Chi phí thường xuyên',
+          value: expOperating,
+          color: '#059669'
+        },
+        {
+          label: 'A.II.3 Chi phí năng lượng',
+          value: expEnergy,
+          color: '#0284c7'
+        },
+        {
+          label: 'A.II.4–A.II.10 Chi khác, cọc & kết dư',
+          value: expOtherCombined,
+          color: '#f59e0b'
+        },
+        {
+          label: 'A.II.2 Chi phí định kỳ',
+          value: expPeriodic,
+          color: '#6366f1'
+        }
+      ];
+
+      const totalExp = breakdownItems.reduce((s, item) => s + item.value, 0);
+
+      const ctx2 = document.getElementById('expenseBreakdownChart').getContext('2d');
+      new Chart(ctx2, {
+        type: 'doughnut',
+        data: {
+          labels: breakdownItems.map(i => i.label),
+          datasets: [{
+            data: breakdownItems.map(i => i.value),
+            backgroundColor: breakdownItems.map(i => i.color),
+            borderWidth: 2,
+            borderColor: '#ffffff',
+            hoverOffset: 6
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          cutout: '64%',
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              backgroundColor: '#0f172a',
+              padding: 12,
+              callbacks: {
+                label: function(context) {
+                  const val = context.parsed || 0;
+                  const pct = ((val / totalExp) * 100).toFixed(1);
+                  return ` ${val.toLocaleString('en-US')} VND (${pct}%)`;
+                }
+              }
+            }
+          }
+        }
+      });
+
+      // Populate clean percentage breakdown legend below Doughnut chart
+      const legendContainer = document.getElementById('expenseLegendList');
+      legendContainer.innerHTML = breakdownItems.map(item => {
+        const pct = ((item.value / totalExp) * 100).toFixed(1);
+        return `
+          <div class="flex items-center justify-between gap-2">
+            <div class="flex items-center gap-2 min-w-0">
+              <span class="w-2.5 h-2.5 rounded-full flex-shrink-0" style="background-color: ${item.color}"></span>
+              <span class="text-slate-700 truncate font-medium">${item.label}</span>
+            </div>
+            <div class="text-right flex-shrink-0 tabular-nums">
+              <span class="font-bold text-slate-900">${(item.value / 1e9).toFixed(2)} tỷ</span>
+              <span class="text-slate-400 ml-1">(${pct}%)</span>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Boot Application
+    window.addEventListener('DOMContentLoaded', () => {
+      renderTable();
+      initCharts();
+    });
+  </script>
+</body>
+</html>
